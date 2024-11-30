@@ -1,6 +1,7 @@
 package zb.dividends.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.var;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,8 +12,6 @@ import zb.dividends.model.Company;
 import zb.dividends.persist.entity.CompanyEntity;
 import zb.dividends.service.CompanyService;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/company")
 @AllArgsConstructor
@@ -21,7 +20,8 @@ public class CompanyController {
 
     @GetMapping("/autocomplete")
     public ResponseEntity<?> autocomplete(@RequestParam String keyword) {
-        return null;
+        var result = this.companyService.getcompanyNamesByKeyword(keyword);
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping
@@ -43,6 +43,7 @@ public class CompanyController {
             throw new RuntimeException("ticker cannot be empty");
         }
         Company company = this.companyService.save(ticker);
+        this.companyService.addAutoCompleteKeyword(company.getName());
 
         return ResponseEntity.ok(company);
     }

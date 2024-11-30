@@ -29,6 +29,7 @@ dependencies {
 //    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
     implementation 'org.jsoup:jsoup:1.15.3'
+    implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.3'
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'

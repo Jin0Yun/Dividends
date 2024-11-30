@@ -20,8 +20,11 @@ public class DividendEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Long companyId;
+
     private LocalDateTime date;
+
     private String dividend;
 
     public DividendEntity(Long companyId, Dividend dividend) {

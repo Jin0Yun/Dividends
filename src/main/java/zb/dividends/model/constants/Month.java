@@ -2,8 +2,7 @@ package zb.dividends.model.constants;
 
 import lombok.var;
 
-public enum
-Month {
+public enum Month {
     JAN("Jan", 1),
     FEB("Feb", 2),
     MAR("Mar", 3),
