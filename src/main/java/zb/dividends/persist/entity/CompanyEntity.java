@@ -3,12 +3,14 @@ package zb.dividends.persist.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import zb.dividends.model.Company;
 
 import javax.persistence.*;
 
 @Entity(name = "COMPANY")
 @Getter
-@Setter
+@ToString
 @NoArgsConstructor
 public class CompanyEntity {
     @Id
@@ -17,4 +19,9 @@ public class CompanyEntity {
     @Column(unique = true)
     private String ticker;
     private String name;
+
+    public CompanyEntity(Company company) {
+        this.ticker = company.getTicker();
+        this.name = company.getName();
+    }
 }
