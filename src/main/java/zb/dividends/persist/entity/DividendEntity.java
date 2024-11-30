@@ -6,16 +6,20 @@ import lombok.Setter;
 import lombok.ToString;
 import zb.dividends.model.Dividend;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity(name = "DIVIDEND")
 @Getter
 @ToString
 @NoArgsConstructor
+@Table(
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        columnNames = {"companyId", "date"}
+                )
+        }
+)
 public class DividendEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

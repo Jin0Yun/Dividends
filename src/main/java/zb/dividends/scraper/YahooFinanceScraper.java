@@ -59,7 +59,7 @@ public class YahooFinanceScraper implements Scraper {
                         .dividend(dividend)
                         .build());
             }
-            scrapResult.setDividendEntities(dividends);
+            scrapResult.setDividends(dividends);
         } catch (IOException e) {
             throw new RuntimeException("데이터를 가져오는 중 오류가 발생했습니다.", e);
         }
