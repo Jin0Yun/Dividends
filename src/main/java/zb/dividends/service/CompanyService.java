@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.apache.commons.collections4.Trie;
 import org.springframework.util.ObjectUtils;
+import zb.dividends.exception.impl.NoCompanyException;
 import zb.dividends.model.Company;
 import zb.dividends.model.ScrapedResult;
 import zb.dividends.persist.CompanyRepository;
@@ -82,7 +83,7 @@ public class CompanyService {
     }
     public String deleteCompany(String ticker) {
         var company = this.companyRepository.findByTicker(ticker)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 회사입니다. :" + ticker));
+                .orElseThrow(() -> new NoCompanyException());
         this.dividendRepository.deleteAllByCompanyId(company.getId());
         this.companyRepository.delete(company);
         this.deleteAutoCompleteKeywords(ticker);

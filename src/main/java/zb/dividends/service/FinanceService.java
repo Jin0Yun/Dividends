@@ -2,6 +2,7 @@ package zb.dividends.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import zb.dividends.exception.impl.NoCompanyException;
 import zb.dividends.model.Company;
 import zb.dividends.model.Dividend;
 import zb.dividends.model.ScrapedResult;
@@ -21,7 +22,7 @@ public class FinanceService {
 
     public ScrapedResult getDividendByCompanyName(String companyName) {
         CompanyEntity company = this.companyRepository.findByName(companyName)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 회사명입니다: " + companyName));
+                .orElseThrow(() -> new NoCompanyException());
 
         List<DividendEntity> dividendEntities = this.dividendRepository.findAllByCompanyId(company.getId());
 
